@@ -47,7 +47,18 @@ namespace WPF_Brickstore
             }
 
         }
+        public void Filter(object sender, TextChangedEventArgs e)
+        {
+            string filter = txtFilter.Text;
+            if (filter == "")
+            {
+                dgBrickstore.ItemsSource = brickData;
+            }
+            else
+            {
+                dgBrickstore.ItemsSource = brickData.Where(x => x.itemName.ToLower().Contains(filter.ToLower()) || x.itemId.Contains(filter.ToLower()));
+            }
 
-
+        }
     }
 }
