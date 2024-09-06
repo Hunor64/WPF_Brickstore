@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.Win32;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,24 +22,32 @@ namespace WPF_Brickstore
         public MainWindow()
         {
             InitializeComponent();
-            LoadXaml();
-            dgBrickstore.ItemsSource = brickData;
 
         }
-        public void LoadXaml()
+        public void LoadXaml(object sender, RoutedEventArgs e)
         {
-            XDocument xaml = XDocument.Load("brickstore_parts_4643-1-power-boat-transporter.bsx");
-            foreach (var elem in xaml.Descendants("Item"))
+            OpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "XML Files (*.bsx)|*.bsx";
+            if (openFileDialog.ShowDialog() == true)
             {
-                string itemId = elem.Element("ItemID").Value;
-                string itemName = elem.Element("ItemName").Value;
-                string categoryName = elem.Element("CategoryName").Value;
-                string colorName = elem.Element("ColorName").Value;
-                int qty = int.Parse(elem.Element("Qty").Value);
+                brickData = new();
+                XDocument xaml = XDocument.Load(openFileDialog.FileName);
+                foreach (var elem in xaml.Descendants("Item"))
+                {
+                    string itemId = elem.Element("ItemID").Value;
+                    string itemName = elem.Element("ItemName").Value;
+                    string categoryName = elem.Element("CategoryName").Value;
+                    string colorName = elem.Element("ColorName").Value;
+                    int qty = int.Parse(elem.Element("Qty").Value);
 
-                BrickedData brick = new BrickedData(itemId, itemName, categoryName, colorName, qty);
-                brickData.Add(brick);
+                    BrickedData brick = new BrickedData(itemId, itemName, categoryName, colorName, qty);
+                    brickData.Add(brick);
+                }
+                dgBrickstore.ItemsSource = brickData;
             }
+
         }
+
+
     }
 }

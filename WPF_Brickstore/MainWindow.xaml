@@ -7,10 +7,20 @@
         mc:Ignorable="d"
         Title="Brickstroe" Height="450" Width="800">
     <Grid>
-        <Grid>
-            <DataGrid x:Name="dgBrickstore">
 
-            </DataGrid>
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" FontSize="22">Filter:</TextBlock>
+        <TextBox x:Name="txtFilter" Grid.Row="1" Grid.Column="1" FontSize="22"></TextBox>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Fájl betöltése:</TextBlock>
+        <Button x:Name="btnLoad" Content="Betöltés" Click="LoadXaml" Grid.Column="1" FontSize="22"/>
+        <DataGrid x:Name="dgBrickstore" Grid.ColumnSpan="2" Grid.Row="2"></DataGrid>
     </Grid>
 </Window>
