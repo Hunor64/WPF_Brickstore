@@ -5,17 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Brickstore"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Brickstroe" Height="450" Width="800">
     <Grid>
         <Grid>
-            <DataGrid x:Name="dataGrid">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ItemID" />
-                    <DataGridTextColumn Header="ItemName" />
-                    <DataGridTextColumn Header="CategoryName" />
-                    <DataGridTextColumn Header="ColorName"/>
-                    <DataGridTextColumn Header="Qty" />
-                </DataGrid.Columns>
+            <DataGrid x:Name="dgBrickstore">
+
             </DataGrid>
         </Grid>
     </Grid>
