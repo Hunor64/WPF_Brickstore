@@ -16,9 +16,15 @@ namespace WPF_Brickstore
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<BrickedData> brickData = new();
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+        public void LoadXaml()
+        {
+
         }
     }
 }
