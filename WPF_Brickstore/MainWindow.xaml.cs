@@ -19,6 +19,8 @@ namespace WPF_Brickstore
     public partial class MainWindow : Window
     {
         List<BrickedData> brickData = new();
+        List<BrickedData> currentFilter = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,15 +51,12 @@ namespace WPF_Brickstore
         }
         public void Filter(object sender, TextChangedEventArgs e)
         {
-            string filter = txtFilter.Text;
-            if (filter == "")
-            {
-                dgBrickstore.ItemsSource = brickData;
-            }
-            else
-            {
-                dgBrickstore.ItemsSource = brickData.Where(x => x.itemName.ToLower().Contains(filter.ToLower()) || x.itemId.Contains(filter.ToLower()));
-            }
+            currentFilter = brickData.Where(x => x.itemName.ToLower().Contains(txtFilter.Text.ToLower()) && x.categoryName.ToLower().Contains(cmbFilterKat.Text.ToLower()) && x.itemId.Contains(txtFilterKod.Text.ToLower())).ToList();
+            dgBrickstore.ItemsSource = currentFilter;
+
+        }
+        public void LoadCMBItems()
+        {
 
         }
     }
