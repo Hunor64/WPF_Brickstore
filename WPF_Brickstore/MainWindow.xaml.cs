@@ -55,8 +55,8 @@ namespace WPF_Brickstore
         }
         public void Filter()
         {
-            currentFilter = brickData.Where(x => x.itemName.ToLower().Contains(txtFilter.Text.ToLower()) && x.categoryName.ToLower().Contains(cmbFilterKat.Text.ToLower()) && x.itemId.Contains(txtFilterKod.Text.ToLower())).ToList();
-            dgBrickstore.ItemsSource = currentFilter;
+            currentFilter = brickData.Where(x => x.itemName.ToLower().Contains(txtFilter.Text.ToLower()) && x.categoryName.ToLower().Contains(cmbFilterKat.Text.ToLower())).ToList();
+            dgBrickstore.ItemsSource = currentFilter.Where(x => x.itemId.Contains(txtFilterKod.Text.ToLower()));
 
         }
         public void LoadCMBItems()
