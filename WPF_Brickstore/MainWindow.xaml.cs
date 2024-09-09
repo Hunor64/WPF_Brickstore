@@ -59,7 +59,7 @@ namespace WPF_Brickstore
             string filterKodText = txtFilterKod.Text.ToLower();
             string filterKatText = cmbFilterKat.Text.ToLower();
 
-            currentFilter = brickData.Where(x => x.itemName.ToLower().Contains(filterText) && x.itemId.ToLower().Contains(filterKodText)).ToList();
+            currentFilter = brickData.Where(x => x.itemName.ToLower().StartsWith(filterText) && x.itemId.ToLower().Contains(filterKodText)).ToList();
             dgBrickstore.ItemsSource = currentFilter.Where(x => x.categoryName.ToLower().Contains(filterKatText));
         }
         public void LoadCMBItems()
