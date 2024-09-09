@@ -29,7 +29,7 @@
         <TextBlock Grid.Row="1" FontSize="22" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Center">Kód:</TextBlock>
         <TextBox TextAlignment="Center" x:Name="txtFilterKod" Grid.Row="1" Grid.Column="3" FontSize="22" TextChanged="Filter" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="4" Grid.Row="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Kategória:</TextBlock>
-        <ComboBox x:Name="cmbFilterKat" Grid.Row="1" Grid.Column="5" FontSize="22" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cmbFilterKat" Grid.Row="1" Grid.Column="5" FontSize="22" VerticalAlignment="Center" SelectionChanged="cmbFilterKat_SelectionChanged"/>
         <DataGrid x:Name="dgBrickstore" Grid.ColumnSpan="6" Grid.Row="2"></DataGrid>
     </Grid>
 </Window>
