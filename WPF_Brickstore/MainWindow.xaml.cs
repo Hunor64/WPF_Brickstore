@@ -31,7 +31,7 @@ namespace WPF_Brickstore
         public void LoadXaml(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "XML Files (*.bsx)|*.bsx";
+            openFileDialog.Filter = "BSX Files (*.bsx)|*.bsx";
             if (openFileDialog.ShowDialog() == true)
             {
                 brickData = new();
@@ -55,27 +55,28 @@ namespace WPF_Brickstore
         }
         public void Filter()
         {
-            currentFilter = brickData.Where(x => x.itemName.ToLower().Contains(txtFilter.Text.ToLower()) && x.categoryName.ToLower().Contains(cmbFilterKat.Text.ToLower())).ToList();
-            dgBrickstore.ItemsSource = currentFilter.Where(x => x.itemId.Contains(txtFilterKod.Text.ToLower()));
+            string filterText = txtFilter.Text.ToLower();
+            string filterKodText = txtFilterKod.Text.ToLower();
+            string filterKatText = cmbFilterKat.Text.ToLower();
 
+            currentFilter = brickData.Where(x => x.itemName.ToLower().Contains(filterText) && x.itemId.ToLower().Contains(filterKodText)).ToList();
+            dgBrickstore.ItemsSource = currentFilter.Where(x => x.categoryName.ToLower().Contains(filterKatText));
         }
         public void LoadCMBItems()
         {
             cmbContent = [];
             currentFilter.ForEach(x =>
             {
-                if (x.categoryName.Contains(",") && cmbContent.Contains(x.categoryName.Split(',')[1]) == false)
+                if (x.categoryName.Contains(",") == false)
+                {
+                    cmbContent.Add(x.categoryName.Trim());
+                }
+                if (x.categoryName.Contains(","))
                 {
                     cmbContent.Add(x.categoryName.Split(',')[1].Trim());
                 }
-                if (cmbContent.Contains(x.categoryName) == false)
-                {
-                    if (x.categoryName.Contains(",") == false)
-                    {
-                        cmbContent.Add(x.categoryName.Trim());
-                    }
-                }
-                
+
+
             });
 
             cmbFilterKat.ItemsSource = cmbContent.Distinct().OrderBy(x => x);

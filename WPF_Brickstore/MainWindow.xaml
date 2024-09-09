@@ -21,7 +21,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock Grid.Column="2" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Fájl betöltése:</TextBlock>
         <Button x:Name="btnLoad" Grid.ColumnSpan="1" Content="Betöltés" Click="LoadXaml" Grid.Column="3" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Név:</TextBlock>
