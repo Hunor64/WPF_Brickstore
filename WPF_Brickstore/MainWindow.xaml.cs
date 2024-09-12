@@ -60,11 +60,18 @@ namespace WPF_Brickstore
             string filterKatText = cmbFilterKat.Text.ToLower();
 
             currentFilter = brickData.Where(x => x.itemName.ToLower().StartsWith(filterText) && x.itemId.ToLower().Contains(filterKodText)).ToList();
-            dgBrickstore.ItemsSource = currentFilter.Where(x => x.categoryName.ToLower().Contains(filterKatText));
+            if (filterKatText == "-Nincs Filter-".ToLower())
+            {
+                dgBrickstore.ItemsSource = currentFilter;
+            }
+            else
+            {
+                dgBrickstore.ItemsSource = currentFilter.Where(x => x.categoryName.ToLower().Contains(filterKatText));
+            }
         }
         public void LoadCMBItems()
         {
-            cmbContent = [];
+            cmbContent = ["-Nincs Filter-"];
             currentFilter.ForEach(x =>
             {
                 if (x.categoryName.Contains(",") == false)
@@ -74,23 +81,26 @@ namespace WPF_Brickstore
                 if (x.categoryName.Contains(","))
                 {
                     cmbContent.Add(x.categoryName.Split(',')[1].Trim());
+                    cmbContent.Add(x.categoryName.Split(',')[0].Trim());
                 }
 
 
             });
 
             cmbFilterKat.ItemsSource = cmbContent.Distinct().OrderBy(x => x);
+            cmbFilterKat.SelectedIndex = 0;
         }
 
-        private void cmbFilterKat_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
-
-        private void Filter(object sender, TextChangedEventArgs e)
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             Filter();
             LoadCMBItems();
+
+        }
+
+        private void cmbFilterKat_DropDownClosed(object sender, EventArgs e)
+        {
+            Filter();
         }
     }
 }

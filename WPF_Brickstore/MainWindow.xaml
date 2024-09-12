@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Brickstore"
         mc:Ignorable="d"
-        Title="Brickstroe" Height="450" Width="800" MinHeight="450" MinWidth="800">
+        Title="Brickstroe" Height="450" Width="1000" MinHeight="450" MinWidth="800">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -25,11 +25,11 @@
         <TextBlock Grid.Column="2" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Fájl betöltése:</TextBlock>
         <Button x:Name="btnLoad" Grid.ColumnSpan="1" Content="Betöltés" Click="LoadXaml" Grid.Column="3" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Név:</TextBlock>
-        <TextBox TextAlignment="Center"  x:Name="txtFilter" Grid.Row="1" Grid.Column="1" FontSize="22" TextChanged="Filter" VerticalAlignment="Center"/>
+        <TextBox TextAlignment="Center"  x:Name="txtFilter" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" TextChanged="txtFilter_TextChanged"/>
         <TextBlock Grid.Row="1" FontSize="22" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Center">Kód:</TextBlock>
-        <TextBox TextAlignment="Center" x:Name="txtFilterKod" Grid.Row="1" Grid.Column="3" FontSize="22" TextChanged="Filter" VerticalAlignment="Center"/>
+        <TextBox TextAlignment="Center" x:Name="txtFilterKod" Grid.Row="1" Grid.Column="3" FontSize="22" TextChanged="txtFilter_TextChanged" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="4" Grid.Row="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Kategória:</TextBlock>
-        <ComboBox x:Name="cmbFilterKat" Grid.Row="1" Grid.Column="5" FontSize="22" VerticalAlignment="Center" SelectionChanged="cmbFilterKat_SelectionChanged"/>
+        <ComboBox x:Name="cmbFilterKat" Grid.Row="1" Grid.Column="5" FontSize="22" VerticalAlignment="Center" DropDownClosed="cmbFilterKat_DropDownClosed"/>
         <DataGrid x:Name="dgBrickstore" Grid.ColumnSpan="6" Grid.Row="2"></DataGrid>
     </Grid>
 </Window>
