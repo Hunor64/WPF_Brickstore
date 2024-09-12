@@ -28,6 +28,7 @@ namespace WPF_Brickstore
             InitializeComponent();
 
         }
+
         public void LoadXaml(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
@@ -37,15 +38,8 @@ namespace WPF_Brickstore
                 brickData = new();
                 XDocument xaml = XDocument.Load(openFileDialog.FileName);
                 foreach (var elem in xaml.Descendants("Item"))
-                {
-                    string itemId = elem.Element("ItemID").Value;
-                    string itemName = elem.Element("ItemName").Value;
-                    string categoryName = elem.Element("CategoryName").Value;
-                    string colorName = elem.Element("ColorName").Value;
-                    int qty = int.Parse(elem.Element("Qty").Value);
-
-                    BrickedData brick = new BrickedData(itemId, itemName, categoryName, colorName, qty);
-                    brickData.Add(brick);
+                {                    
+                    brickData.Add(new BrickedData(elem.Element("ItemID").Value, elem.Element("ItemName").Value, elem.Element("CategoryName").Value, elem.Element("ColorName").Value, int.Parse(elem.Element("Qty").Value)));
                 }
                 currentFilter = brickData;
                 dgBrickstore.ItemsSource = brickData;
@@ -60,7 +54,7 @@ namespace WPF_Brickstore
             string filterKatText = cmbFilterKat.Text.ToLower();
 
             currentFilter = brickData.Where(x => x.itemName.ToLower().StartsWith(filterText) && x.itemId.ToLower().Contains(filterKodText)).ToList();
-            if (filterKatText == "-Nincs Filter-".ToLower())
+            if (cmbFilterKat.SelectedIndex == 0)
             {
                 dgBrickstore.ItemsSource = currentFilter;
             }
@@ -76,8 +70,8 @@ namespace WPF_Brickstore
             {
                 if (x.categoryName.Contains(","))
                 {
-                    cmbContent.Add(x.categoryName.Split(',')[1].Trim());
                     cmbContent.Add(x.categoryName.Split(',')[0].Trim());
+                    cmbContent.Add(x.categoryName.Split(',')[1].Trim());
                 }
                 else
                 {
