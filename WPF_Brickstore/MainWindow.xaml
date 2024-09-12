@@ -22,8 +22,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Fájl betöltése:</TextBlock>
-        <Button x:Name="btnLoad" Grid.ColumnSpan="1" Content="Betöltés" Click="LoadXaml" Grid.Column="3" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="4" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Fájl betöltése:</TextBlock>
+        <Button x:Name="btnLoad" Grid.ColumnSpan="1" Content="Betöltés" Click="LoadXamlFile" Grid.Column="5" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Mappa betöltése:</TextBlock>
+        <ComboBox x:Name="cmbFileSelect" Grid.Row="0" Grid.Column="1" FontSize="22" VerticalAlignment="Center" DropDownClosed="cmbFileSelect_DropDownClosed"/>
         <TextBlock Grid.Row="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Név:</TextBlock>
         <TextBox TextAlignment="Center"  x:Name="txtFilter" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" TextChanged="txtFilter_TextChanged"/>
         <TextBlock Grid.Row="1" FontSize="22" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Center">Kód:</TextBlock>

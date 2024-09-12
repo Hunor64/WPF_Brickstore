@@ -26,10 +26,9 @@ namespace WPF_Brickstore
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
-        public void LoadXaml(object sender, RoutedEventArgs e)
+        public void LoadXamlFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = "BSX Files (*.bsx)|*.bsx";
@@ -45,6 +44,10 @@ namespace WPF_Brickstore
                 dgBrickstore.ItemsSource = brickData;
             }
             LoadCMBItems();
+
+        }
+        private void LoadXamlFolder(object sender, RoutedEventArgs e)
+        {
 
         }
         public void Filter()
@@ -95,6 +98,16 @@ namespace WPF_Brickstore
         private void cmbFilterKat_DropDownClosed(object sender, EventArgs e)
         {
             Filter();
+        }
+        
+        private void cmbFileSelect_DropDownClosed(object sender, EventArgs e)
+        {
+            OpenFolderDialog openFolderDialog = new();
+            if (openFolderDialog.ShowDialog() == true)
+            {
+                cmbFileSelect.ItemsSource = openFolderDialog.FolderName;
+            }
+
         }
     }
 }
