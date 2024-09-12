@@ -74,14 +74,14 @@ namespace WPF_Brickstore
             cmbContent = ["-Nincs Filter-"];
             currentFilter.ForEach(x =>
             {
-                if (x.categoryName.Contains(",") == false)
-                {
-                    cmbContent.Add(x.categoryName.Trim());
-                }
                 if (x.categoryName.Contains(","))
                 {
                     cmbContent.Add(x.categoryName.Split(',')[1].Trim());
                     cmbContent.Add(x.categoryName.Split(',')[0].Trim());
+                }
+                else
+                {
+                    cmbContent.Add(x.categoryName.Trim());
                 }
 
 
